@@ -17,8 +17,8 @@ export class CoursesComponent implements OnInit {
     },
     {
       id: 2,
-      title: 'Angular 9 test',
-      description: 'Learn the fundamentals of Angular 9 test',
+      title: 'JavaScript Fundamentals',
+      description: 'Learn the fundamentals of JavaScript',
       percentComplete: 50,
       favorite: true
     }
@@ -27,10 +27,31 @@ export class CoursesComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.resetSelectedCourse();
   }
 
   selectCourse(course) {
     this.selectedCourse = course;
   }
 
+  resetSelectedCourse() {
+    const emptyCourse = {
+      id: null,
+      title: '',
+      description: '',
+      percentComplete: 0,
+      favorite: false
+    };
+
+    this.selectedCourse = emptyCourse;
+  }
+
+  saveCourse() {
+    console.log('save course');
+    
+  }
+
+  cancel() {
+    this.resetSelectedCourse();
+  }
 }
