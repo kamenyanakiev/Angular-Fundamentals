@@ -8,6 +8,8 @@ import { MaterialModule } from './material.module';
 import { HomeComponent } from './home/home.component';
 import { CoursesComponent } from './courses/courses.component';
 import { AppComponent } from './app.component';
+import { CoursesService } from './shared/services/courses.service';
+import { LessonsService } from './shared/services/lessons.service';
 
 @NgModule({
   imports: [
@@ -16,14 +18,10 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     FormsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    CoursesComponent
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  declarations: [AppComponent, HomeComponent, CoursesComponent],
+  providers: [CoursesService, LessonsService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
