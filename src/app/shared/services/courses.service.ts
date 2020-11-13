@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Course } from '../models/course.model';
-import { map } from 'rxjs/operators';
 
 const BASE_URL = 'http://localhost:3000/';
 
@@ -11,22 +9,6 @@ const BASE_URL = 'http://localhost:3000/';
 })
 export class CoursesService {
   private model = 'courses';
-  private courses = [
-    {
-      id: 1,
-      title: 'Angular 9 Fundamentals',
-      description: 'Learn the fundamentals of Angular 9',
-      percentComplete: 26,
-      favorite: true,
-    },
-    {
-      id: 2,
-      title: 'JavaScript Fundamentals',
-      description: 'Learn the fundamentals of JavaScript',
-      percentComplete: 50,
-      favorite: true,
-    },
-  ];
 
   constructor(private http: HttpClient) {}
 
@@ -35,21 +17,29 @@ export class CoursesService {
     return this.http.get(url);
   }
 
-  find(courseId) {}
+  find(courseId): Observable<any> {
+    return this.http.get(this.getUrlById(courseId));
+  }
 
   create(course): Observable<any> {
     return this.http.post(this.getUrl(), course);
   }
 
-  update(course) {
+  update(course): Observable<any> {
     console.log('update course', course);
+    return this.http.put(`${this.getUrlById(course.id)}`, course);
   }
 
-  delete(courseId) {
-    console.log('delete course', courseId);
+  delete(courseId): Observable<any> {
+    console.log(this.getUrlById(courseId));
+    return this.http.delete(`${this.getUrlById(courseId)}`);
   }
 
-  private getUrl() {
+  private getUrl(): string {
     return `${BASE_URL}${this.model}`;
+  }
+
+  private getUrlById(id): string {
+    return `${this.getUrl()}/${id}`;
   }
 }
