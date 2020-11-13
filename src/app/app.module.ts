@@ -8,6 +8,9 @@ import { MaterialModule } from './material.module';
 import { HomeComponent } from './home/home.component';
 import { CoursesComponent } from './courses/courses.component';
 import { AppComponent } from './app.component';
+import { CoursesListComponent } from './courses/courses-list/courses-list.component';
+import { CourseDetailsComponent } from './courses/course-details/course-details.component';
+import { LessonsListComponent } from './home/lessons-list/lessons-list.component';
 import { CoursesService } from './shared/services/courses.service';
 import { LessonsService } from './shared/services/lessons.service';
 
@@ -20,7 +23,7 @@ import { LessonsService } from './shared/services/lessons.service';
     MaterialModule,
     HttpClientModule,
   ],
-  declarations: [AppComponent, HomeComponent, CoursesComponent],
+  declarations: [AppComponent, HomeComponent, CoursesComponent, CoursesListComponent, CourseDetailsComponent, LessonsListComponent],
   providers: [CoursesService, LessonsService],
   bootstrap: [AppComponent],
 })
